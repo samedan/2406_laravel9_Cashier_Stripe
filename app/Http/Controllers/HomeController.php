@@ -32,8 +32,16 @@ class HomeController extends Controller
     public function singleCharge(Request $request) {
         // return $request->all(); test
         $amount = $request->amount;
+        $amount = $amount * 100; 
         $paymentMethod = $request->payment_method;
 
-        
+        $user = auth()->user();
+        $user->createOrGetStripeCustomer();
+        // create User Stripe in DBB
+        $paymentMethod = $user->addPaymentMethod($paymentMethod);
+        $user->charge($amount, $paymentMethod->id);
+
+        return to_route('home');
+
     }
 }
