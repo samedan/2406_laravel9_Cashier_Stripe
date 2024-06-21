@@ -28,6 +28,7 @@ class SubscriptionController extends Controller
                 // 'currency'=> 'eur',
                 'currency'=> $request->currency,
                 'interval'=> $request->billing_period,
+                'interval_count'=> $request->interval_count,
                 'product'=> [
                     'name' =>$request->name
                 ]
@@ -38,11 +39,11 @@ class SubscriptionController extends Controller
             // enter into DBB
             \App\Models\Plan::create([
                 'plan_id' => $plan->id,
-                'name' => $plan->product,
+                'name' => $request->name,
                 'price' => $plan->amount,
                 'billing_method' => $plan->interval,
-                'currency' => $plan->currency
-                
+                'currency' => $plan->currency,
+                'interval_count' => $plan->interval_count                
             ]);
 
         //     'plan_id', 
