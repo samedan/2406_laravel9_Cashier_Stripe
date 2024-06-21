@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
-            $table->integer('plan_id');
+            $table->string('plan_id');
             $table->string('name');
             $table->string('billing_method');
             $table->tinyInteger('interval_count')->default(1);

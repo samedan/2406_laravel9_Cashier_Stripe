@@ -58,7 +58,7 @@
                         </div> --}}
                         <div class="form-group">
                           <label>Plan Name</label>
-                          <input type="text" name="name" class="form-control" placeholder="Enter email" />
+                          <input type="text" name="name" class="form-control" placeholder="Enter plan name" />
                         </div>
                         <div class="form-group">
                           <label>Amount</label>
@@ -66,7 +66,7 @@
                         </div>
                         <div class="form-group">
                           <label>Currency</label>
-                          <input type="text" name="currency" class="form-control" placeholder="Enter currency" />
+                          <input type="text" name="currency" class="form-control" placeholder="Enter currency: USD, EUR etc" />
                         </div>
                         <div class="form-group">
                           <label>Interval Count</label>
