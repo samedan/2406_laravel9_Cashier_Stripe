@@ -15,6 +15,8 @@ class SubscriptionController extends Controller
         return view('stripe.plans.create');
     }
 
+
+    // POST plan on stripe & BDD
     public function savePlan(Request $request)
     {
         // Stripe::setApiKey(env('STRIPE_SECRET'));
@@ -46,44 +48,38 @@ class SubscriptionController extends Controller
                 'interval_count' => $plan->interval_count                
             ]);
 
-        //     'plan_id', 
-        // 'name',
-        // 'billing_method',
-        // 'interval_count',
-        // 'price',
-        // 'currency'   
-
-        //     "id" => "plan_QKjQ6Uuj3eWpfS"
-        //     "object" => "plan"
-        //     "active" => true
-        //     "aggregate_usage" => null
-        //     "amount" => 1000
-        //     "amount_decimal" => "1000"
-        //     "billing_scheme" => "per_unit"
-        //     "created" => 1718962861
-        //     "currency" => "eur"
-        //     "interval" => "week"
-        //     "interval_count" => 1
-        //     "livemode" => false
-        //     "metadata" => 
-        // Stripe
-        // \
-        // StripeObject {#329 ▶}
-        //     "meter" => null
-        //     "nickname" => null
-        //     "product" => "prod_QKjQMMzZ0866nU"
-        //     "tiers" => null
-        //     "tiers_mode" => null
-        //     "transform_usage" => null
-        //     "trial_period_days" => null
-        //     "usage_type" => "licensed"
-
         }
         catch(Exception $ex) {
             dd($ex->getMessage());
         }
 
         return "success";
+    }
+
+    // Show confirmation of boght plans/subscriptions
+    public function allPlans() {
+        $basic = \App\Models\Plan::where('name', 'basic')->first();
+        $professional = \App\Models\Plan::where('name', 'professional')->first();
+        $enterprise = \App\Models\Plan::where('name', 'enterprise')->first();
+        // dd ($basic);
+        return view('stripe.plans', compact('basic', 'professional', 'enterprise'));
+    }
+
+    public function checkout($planId) {
+        $plan = \App\Models\Plan::where('plan_id', $planId)->first();
+        if( ! $plan) {
+            return  back()->withErrors(['message' => 'Unable to locate the plan']);
+        }
+        // dd($plan);
+        return view('stripe.plans.checkout', [
+            'plan' => $plan,
+            'intent' => auth()->user()->createSetupIntent()
+            ]
+        );
+    }
+
+    public function processPlan(Request $request) {
+        return $request->all();
     }
         
 }
