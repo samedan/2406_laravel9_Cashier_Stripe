@@ -79,7 +79,35 @@ class SubscriptionController extends Controller
     }
 
     public function processPlan(Request $request) {
-        return $request->all();
+        // return $request->all();
+        $user = auth()->user();
+        $user->createOrGetStripeCustomer();
+        $paymentMethod = null;
+        $paymentMethod = $request->payment_method;
+        if($paymentMethod != null) // trial period
+        {
+            $paymentMethod = $user->addPaymentMethod($paymentMethod);
+        }
+        // hidden form input
+        $plan = $request->plan_id;
+        // dd($plan);
+        try {
+            // from cashier
+                $user->newSubscription(
+                    'default', $plan
+                // )->create($request->paymentMethodId);
+                )->create($paymentMethod != null ? $paymentMethod->id : '');
+        } catch (Exception $ex) {
+            return back()->withErrors([
+                'error' => 'Unable to create subscription due to: '.$ex->getMessage()
+            ]);
+        }
+
+        
+        
+        $request->session()->flash('alert-success', 'You are subscribed to this plan');
+        // return to_route('plans.checkout', $plan->plan_id);
+        return to_route('plans.checkout', $plan);
     }
         
 }

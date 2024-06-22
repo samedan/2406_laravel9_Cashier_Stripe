@@ -3,3 +3,7 @@
 # Good source on github
 
 > https://github.com/HadiNiazi/Create-Subscription-Using-Laravel-Cashier/blob/master/resources/views/stripe/plans.blade.php
+
+### Checkout
+
+> After checkout to stripe, The user gets a Stripe_ID

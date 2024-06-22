@@ -31,9 +31,10 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
-                    @if (session('status'))
+                 {{-- Session coming from SubscriptionControler -> processPlan --}}
+                    @if (session('alert-success'))
                         <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                            {{ session('alert-success') }}
                         </div>
                     @endif
 
