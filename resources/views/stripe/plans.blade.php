@@ -73,7 +73,7 @@
                             </ul>
 
                             <a href="{{ route('plans.checkout', $basic->plan_id) }}" class="pricing-action l-amber">Choose plan</a>
-                            <a href="{{ route('plans.checkout', "plan_QKn3d9823qiaOuX") }}" class="pricing-action l-amber">Choose plan</a>
+                            {{-- <a href="{{ route('plans.checkout', "plan_QKn3d9823qiaOuX") }}" class="pricing-action l-amber">Choose plan</a> --}}
                         </div>
                     @endif
 

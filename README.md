@@ -4,6 +4,10 @@
 
 > https://github.com/HadiNiazi/Create-Subscription-Using-Laravel-Cashier/blob/master/resources/views/stripe/plans.blade.php
 
+# Blog source
+
+> https://medium.com/fabcoding/laravel-7-create-a-subscription-system-using-cashier-stripe-77cdf5c8ea5d
+
 ### Checkout
 
 > After checkout to stripe, The user gets a Stripe_ID

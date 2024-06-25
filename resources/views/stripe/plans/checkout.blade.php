@@ -45,7 +45,7 @@
                       {{-- Data coming from SubscriptionController -> checkout() --}}
                      <div class="form-group">
                       <span><b>Your chosen subscriction is <i>{{strtoupper( $plan->name)}}</i></b></span>
-                     <span style="float:right">{{$plan->currency}}{{$plan->price}}</span>
+                     <span style="float:right">{{$plan->currency}}&nbsp;{{$plan->price}}</span>
                         {{-- <div class="form-group">
                             <div class="row">
                                 @foreach($plans as $plan)

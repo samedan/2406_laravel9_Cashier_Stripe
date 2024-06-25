@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Exception;
 use Illuminate\Http\Request;
+use Laravel\Cashier\Subscription;
 use Stripe\Plan;
 use Stripe\Stripe;
 
@@ -56,7 +57,7 @@ class SubscriptionController extends Controller
         return "success";
     }
 
-    // Show confirmation of boght plans/subscriptions
+    // Show confirmation of bought plans/subscriptions
     public function allPlans() {
         $basic = \App\Models\Plan::where('name', 'basic')->first();
         $professional = \App\Models\Plan::where('name', 'professional')->first();
@@ -86,15 +87,15 @@ class SubscriptionController extends Controller
         $paymentMethod = $request->payment_method;
         if($paymentMethod != null) // trial period
         {
-            $paymentMethod = $user->addPaymentMethod($paymentMethod);
+            $paymentMethod = $user->addPaymentMethod($paymentMethod); // resources cannot be null
         }
         // hidden form input
-        $plan = $request->plan_id;
+        $planId = $request->plan_id;
         // dd($plan);
         try {
             // from cashier
                 $user->newSubscription(
-                    'default', $plan
+                    'default', $planId
                 // )->create($request->paymentMethodId);
                 )->create($paymentMethod != null ? $paymentMethod->id : '');
         } catch (Exception $ex) {
@@ -107,7 +108,17 @@ class SubscriptionController extends Controller
         
         $request->session()->flash('alert-success', 'You are subscribed to this plan');
         // return to_route('plans.checkout', $plan->plan_id);
-        return to_route('plans.checkout', $plan);
+        return to_route('plans.checkout', $planId);
+    }
+
+    public function allSubscriptions() {
+        // $subscriptions = auth()->user()->subscriptions;
+        $subscriptions = Subscription::where('user_id', auth()->id())->get();
+        // dd($subscriptions);
+        return view('stripe.subscriptions.index', compact('subscriptions'));
+        // , [
+        //     'intent' => auth()->user()->createSetupIntent()
+        // ]);
     }
         
 }

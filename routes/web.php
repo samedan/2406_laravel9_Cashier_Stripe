@@ -37,8 +37,12 @@ Route::get('plans', [SubscriptionController::class, 'allPlans'])->name('plans.al
 // Display Plan/subscription Details
 Route::get('plans/checkout/{planId}', [SubscriptionController::class, 'checkout'])->name('plans.checkout');
 
+
+// Send plan data to Stripe
 Route::post('plans/process', [SubscriptionController::class, 'processPlan'])->name('plan.process');
 
 // Route::get('plans', function() {
 //     return view('stripe.plans');
 // });
+
+Route::get('subscriptions/all', [SubscriptionController::class, 'allSubscriptions'])->name('subscriptions.all');

@@ -26,6 +26,23 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+                &nbsp;|&nbsp;
+                <a class="navbar-brand" href="{{ url('/plans') }}">
+                    {{ config('plans.all', 'Single Charge') }}
+                </a>
+                &nbsp;|&nbsp;
+                <a class="navbar-brand" href="{{ url('/plans') }}">
+                    {{ config('plans.all', 'Plans') }}
+                </a>
+                &nbsp;|&nbsp;
+                <a class="navbar-brand" href="{{ url('/plans/create') }}">
+                    {{ config('plans.create', 'New Plan') }}
+                </a>
+                &nbsp;|&nbsp;
+                <a class="navbar-brand" href="{{ url('/subscriptions/all') }}">
+                    {{ config('allSubscriptions', 'View subscriptions') }}
+                </a>
+                
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>

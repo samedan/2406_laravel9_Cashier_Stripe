@@ -69,7 +69,7 @@
                           <input type="text" name="currency" class="form-control" placeholder="Enter currency: USD, EUR etc" />
                         </div>
                         <div class="form-group">
-                          <label>Interval Count</label>
+                          <label>Interval Count (how many weeks/months/years)</label>
                           <input type="number" name="interval_count" class="form-control" placeholder="Enter count" />
                         </div>
                         <div class="form-group">
