@@ -11,3 +11,7 @@
 ### Checkout
 
 > After checkout to stripe, The user gets a Stripe_ID
+
+### Getting the user from Subscription Model
+
+> vendor/laravel/cashir/src/Subscription.php

@@ -91,21 +91,21 @@ input:checked + .slider:before {
                             <th scope="col">Price</th>
                             <th scope="col">Quantity</th>
                             <th scope="col">Trial Start At</th>
+                            {{-- <th scope="col">Trial Ends At</th> --}}
                             <th>Auto Renew</th>
                           </tr>
                         </thead>
                         <tbody>
                             @foreach ($subscriptions as $subscription)
-                            <p>{{$subscription}}</p>
+                            {{-- <p>{{$subscription}}</p> --}}
                             <tr>
-                             <td>{{ $subscription->name }}</td>
-                             {{-- <td>{{ $subscription->plan->name }}</td> --}}
-                            </tr>
-                                {{-- <tr>
+                           
+                           
                                     <td>{{ $subscription->plan->name }}</td>
                                     <td>{{ $subscription->name }}</td>
                                     <td>{{ $subscription->plan->price }}</td>
                                     <td>{{ $subscription->quantity }}</td>
+                                    {{-- <td>{{ $subscription->ends_at }}</td> --}}
                                     <td>{{ $subscription->created_at }}</td>
                                     <td>
                                         <label class="switch">
@@ -118,7 +118,7 @@ input:checked + .slider:before {
                                             <span class="slider round"></span>
                                         </label>
                                     </td>
-                                </tr> --}}
+                                </tr> 
                             @endforeach
                         </tbody>
                     </table>
@@ -134,7 +134,7 @@ input:checked + .slider:before {
 </div>
 @endsection
 
-{{-- @section('scripts')
+@section('scripts')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
@@ -171,4 +171,4 @@ input:checked + .slider:before {
         });
     });
 </script>
-@endsection --}}
+@endsection

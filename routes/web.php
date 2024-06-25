@@ -46,3 +46,9 @@ Route::post('plans/process', [SubscriptionController::class, 'processPlan'])->na
 // });
 
 Route::get('subscriptions/all', [SubscriptionController::class, 'allSubscriptions'])->name('subscriptions.all');
+// Cancel/Subscribe 
+Route::get('subscriptions/cancel', [SubscriptionController::class, 'cancelSubscriptions'])->name('subscriptions.cancel');
+Route::get('subscriptions/resume', [SubscriptionController::class, 'resumeSubscriptions'])->name('subscriptions.resume');
+
+
+

@@ -111,6 +111,8 @@ class SubscriptionController extends Controller
         return to_route('plans.checkout', $planId);
     }
 
+
+    // View Subscriprions
     public function allSubscriptions() {
         // $subscriptions = auth()->user()->subscriptions;
         $subscriptions = Subscription::where('user_id', auth()->id())->get();
@@ -120,5 +122,17 @@ class SubscriptionController extends Controller
         //     'intent' => auth()->user()->createSetupIntent()
         // ]);
     }
+
+    // Cancel subscription
+    public function cancelSubscriptions(Request $request) {
+        $subscriptionName = $request->subscriptionName;
+        if($subscriptionName) {
+            $user = auth()->user();
+            $user->subscription($subscriptionName)->cancel(); 
+            return 'Subscription is canceled.'; // 'sunscriptions' table , column 'ends_at'
+        }
+    }
+
+
         
 }
