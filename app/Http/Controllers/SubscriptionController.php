@@ -126,6 +126,7 @@ class SubscriptionController extends Controller
     // Cancel subscription
     public function cancelSubscriptions(Request $request) {
         $subscriptionName = $request->subscriptionName;
+        dd($subscriptionName);
         if($subscriptionName) {
             $user = auth()->user();
             $user->subscription($subscriptionName)->cancel(); 
@@ -133,6 +134,24 @@ class SubscriptionController extends Controller
         }
     }
 
-
-        
+    // Resume subscription
+    // public function resumeSubscriptions(Request $request) {
+    //     $subscriptionName = $request->subscriptionName;
+    //     if($subscriptionName) {
+    //         $user = auth()->user();
+    //         $user->subscription($subscriptionName)->resume(); 
+    //         return 'Subscription is resumed.'; // 'sunscriptions' table , column 'ends_at'
+    //     }
+    // }
+    public function resumeSubscriptions(Request $request)
+    {
+        $user = auth()->user();
+        $subscriptionName = $request->subscriptionName;
+        dd($subscriptionName);
+        if($subscriptionName){
+            $user->subscription($subscriptionName)->resume();
+            return 'subsc is resumed';
+        }
+    }
+     
 }

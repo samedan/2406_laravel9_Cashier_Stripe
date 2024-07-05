@@ -87,7 +87,7 @@ input:checked + .slider:before {
                         <thead>
                           <tr>
                             <th scope="col">Plan Name</th>
-                            <th scope="col">Subscription Name</th>
+                            <th scope="col">Subscription Name(stripe_id)</th>
                             <th scope="col">Price</th>
                             <th scope="col">Quantity</th>
                             <th scope="col">Trial Start At</th>
@@ -97,12 +97,12 @@ input:checked + .slider:before {
                         </thead>
                         <tbody>
                             @foreach ($subscriptions as $subscription)
-                            {{-- <p>{{$subscription}}</p> --}}
+                            <p>{{$subscription}}</p>
                             <tr>
                            
                            
                                     <td>{{ $subscription->plan->name }}</td>
-                                    <td>{{ $subscription->name }}</td>
+                                    <td>{{ $subscription->stripe_id}}</td>
                                     <td>{{ $subscription->plan->price }}</td>
                                     <td>{{ $subscription->quantity }}</td>
                                     {{-- <td>{{ $subscription->ends_at }}</td> --}}
@@ -110,9 +110,11 @@ input:checked + .slider:before {
                                     <td>
                                         <label class="switch">
                                             @if ($subscription->ends_at == null)
-                                                <input type="checkbox" id="switcher" checked value="{{ $subscription->name }}">
+                                                {{-- <input type="checkbox" id="switcher" checked value="{{ $subscription->name }}"> --}}
+                                                <input type="checkbox" id="switcher" checked value="{{ $subscription->stripe_id }}">
                                             @else
-                                                <input type="checkbox" id="switcher" value="{{ $subscription->name }}">
+                                                {{-- <input type="checkbox" id="switcher" value="{{ $subscription->name }}"> --}}
+                                                <input type="checkbox" id="switcher" value="{{ $subscription->stripe_id }}">
                                             @endif
 
                                             <span class="slider round"></span>
@@ -141,6 +143,8 @@ input:checked + .slider:before {
         $('#switcher').click(function() {
             var subscriptionName = $('#switcher').val();
             if($(this).is(':checked')){
+                console.log('checked');
+                console.log(subscriptionName);
                 $.ajax({
                     url:'{{ route("subscriptions.resume") }}',
                     data: { subscriptionName },
@@ -155,6 +159,8 @@ input:checked + .slider:before {
                 });
             }
             else {
+                console.log('unchecked');
+                console.log(subscriptionName);
                 $.ajax({
                     url:'{{ route("subscriptions.cancel") }}',
                     data: { subscriptionName },

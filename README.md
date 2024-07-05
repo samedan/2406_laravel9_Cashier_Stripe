@@ -1,4 +1,4 @@
-# https://www.youtube.com/watch?v=DfM4nkDNCtQ&list=PLDc9bt_00KcJaSZXhpCqT6J05HP2qt5JQ&index=8
+# https://www.youtube.com/watch?v=GGTQwdQSl9M&list=PLDc9bt_00KcJaSZXhpCqT6J05HP2qt5JQ&index=17
 
 # Good source on github
 
@@ -15,3 +15,15 @@
 ### Getting the user from Subscription Model
 
 > vendor/laravel/cashir/src/Subscription.php
+
+## Cancelling subscription
+
+> https://laravel.com/docs/9.x/billing#cancelling-subscriptions
+> web.php -> Route::get('subscriptions/cancel',...)
+> /views/stripe/subscriptions/index.blade.php
+> SubscritionController -> public function cancelSubscriptions
+
+## Spit out Cachier Migrations file
+
+> php artisan vendor:publish
+> 12
